@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title> jTwitter Test </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+        <script src='jquery.jtwitter.min.js'> </script>
+        <script>
+            function callback(data)
+            {
+                var tweetsDiv = $("#tweets");
+                tweetsDiv.html(data[0]["screen_name"] + "<br>");
+                tweetsDiv.html("This account was created the " + data[0]['created_at']);
+            }
+            function loadTweets()
+            {
+                var username = $("#input_username").val();
+                jQuery.jTwitter('users/lookup', {'screen_name' : username}, callback);
+            }
+        </script>
+        <style>
+            body { padding: 5%; font-family: Helvetica; }
+        </style>
+    </head>
+    <body>
+        <h1> jTwitter API Demo </h1> <hr />
+        <input type='text' id='input_username' /><input type='button' value="Show last tweets"  onclick='loadTweets()' /><br />
+        <div id='tweets'>
+           
+        </div>
+    </body>
+</html>

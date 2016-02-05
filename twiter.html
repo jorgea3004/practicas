@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Widget de Twitter</title>
+    </head>
+	<body>
+		<ul>
+		<li>
+<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+new TWTR.Widget({
+  version: 2,
+  type: 'profile',
+  rpp: 40,
+  interval: 13000,
+  width: 370,
+  height: 290,
+  theme: {
+	shell: {
+	  background: '#333333',
+	  color: '#ffffff'
+	},
+	tweets: {
+	  background: '#000000',
+	  color: '#ffffff',
+	  links: '#eb1e07'
+	}
+  },
+  features: {
+    scrollbar: false,
+    loop: false,
+    live: true,
+    behavior: 'default'
+  }
+}).render().setUser('MateoBlanco_').start();
+</script>
+		</li>
+		</ul>
+	</body>
+</html>

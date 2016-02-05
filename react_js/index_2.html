@@ -1,0 +1,49 @@
+<html>
+<head>
+	<title>Test 2</title>
+    <script src="jss/react.min.js"></script>
+    <script src="jss/JSXTransformer.js"></script>
+    <style type="text/css">
+    body, .User, article, img,div,p { width: 100%; height: 100%; display: inline;float: left;position: relative;margin: 0;padding: 0;}
+    .User { border: 1px solid #000; background: green; width: 300px; height: 100px;position: absolute;top: 50%; left: 50%;margin: -50px 0 0 -150px; }
+    .User-avatar { flex-shrink:0; margin-right: 10px; width: 50px; height: 50px; }
+    .User-description { flex:1; }
+    p.User-name { 220px; height: auto;}
+    </style>
+</head>
+<body>
+	<section id="user">
+	</section>
+</body>
+    <script type="text/jsx">
+    var User = React.createClass({
+    	changeUser : function (){
+    		this.setState({
+    			username : "elYorch",
+    			avatar : "merol.jpg",
+    			description : "Programador"
+    		})
+    	},
+    	getInitialState : function (){
+    		return {
+    			username : "@jorgea3004",
+    			avatar : "merol.jpg",
+    			description : "Lider"
+    		}
+    	},
+    	render : function(){
+    		var image = "img/"+this.state.avatar;
+    		return (
+    			<article className="User" onClick={this.changeUser}>
+			<img className="User-avatar" src={image}></img>
+			<div className="User-description">
+				<p className="User-name">{this.state.username}</p>
+				<p>{this.state.description}</p>
+			</div>
+		</article>
+    		)
+    	}
+    });
+      React.render( <User/>, document.getElementById("user") );
+    </script>
+</html>

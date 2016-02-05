@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>miPagina</title>
+		<script src="librarys/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript">
+		$(function() {
+		   // do stuff when DOM is ready
+		   
+		   // elementos article se le agraga la clase 'colorea'
+			$("article").addClass("colorea");
+			
+			//los hijos 'li' de 'elemento_ul' se le agrega la clase 'horizontal'
+			$("#elemento_ul > li").addClass("horizontal");
+
+			//los hijos 'li' de 'elemento_ul' que no tengan clase 'horizontal' se le agrega la clase 'sublevel'
+			$("#elemento_ul li:not(.horizontal)").addClass("sublevel");
+
+			//  Selector xpath 
+
+			//Los elementos 'a' con attributo 'href' con 'mailto:' se le agrega la clase 'mailto'
+			$('a[href^="mailto:"]').addClass('mailto');
+
+			//Los elementos 'a' con attributo 'href' con terminacion '.pdf' se le agrega la clase 'pdflink'
+			$('a[href$=".pdf"]').addClass('pdflink');
+
+			//Los elementos 'a' con attributo 'href' con url a 'mysite.com' se le agrega la clase 'mysite'
+			$('a[href*="mysite.com"]').addClass('mysite');
+			
+			//Diseños para tablas
+			
+			// Filas Impares (1,3,5, ...)
+			$('tr:odd').addClass('odd');
+
+			// Filas Impares (0,2,4, ...)
+			$('tr:even').addClass('even');
+
+			// Las celdas que contengan "td 2-2" se le agrega la clase 'destacado'
+			//$('td:contains("td 2-2")').addClass('destacado');
+
+			$('tr th').addClass('cabecera');
+			//$('td:contains("td 2-2")').next().addClass('destacado');
+			//$('td:contains("td 2-2")').siblings().addClass('destacado');
+			//$('td:contains("td 2-2")').parent().find('td:gt(0)').addClass('destacado');
+			$('td:contains("td 2-2")')
+				.parent()
+				.find('td')
+				.not(':contains("td 2-2")')
+				.addClass('destacado');
+			
+			$('#alternador-largo').bind('click', function(){
+				$('body').addClass('largo').removeClass('estrecho');
+				$('#alternador .boton').removeClass('selected');
+				$(this).addClass('selected');
+			});
+			$('#alternador-estrecho').bind('click', function(){
+				$('body').addClass('estrecho').removeClass('largo');
+				$('#alternador .boton').removeClass('selected');
+				$(this).addClass('selected');
+			});
+			$('#alternador-normal').bind('click', function(){
+				$('body').removeClass('largo').removeClass('estrecho');
+				$('#alternador .boton').removeClass('selected');
+				$(this).addClass('selected');
+			});
+		});
+		</script>
+		<style type="text/css">
+			body {
+				font-size:14px;
+			}
+			header, footer, section, aside {
+				height:auto;
+				margin:10px;
+				padding:0;
+			}
+			section article {
+				height:auto;
+				margin:10px;
+				padding:0;
+			}
+			.colorea {
+				background:#aaa;
+				border:1px solid #000;
+				border-radius:5px;
+				color:fff;
+				display:inline-block;
+				height:auto;
+				margin:10px;
+				padding:10px;
+				text-align:center;
+				width:200px;
+			}
+			#elementos {
+				list-style:none;
+				margin:5px;
+				padding:0;
+			}
+			.horizontal {
+				background:yellow;
+				margin:2px auto;
+			}
+			.sublevel {
+				background:#ffc;
+			}
+			a {
+				color:#00f;
+			}
+			a.mailto {
+				color:#f00;
+			}
+			a.pdflink {
+				color:#090;
+			}
+			a.mysite {
+				text-decoration:none;
+				border-bottom: 1px dotted #00f;
+			}
+			.cabecera {
+				background-color:#034000;
+			}
+			.odd {
+				background:yellow;
+			}
+			.even {
+				background:red;
+			}
+			.destacado {
+				color:green;
+			}
+			body.largo #contenedor p {
+				font-size:1.5em;
+			}
+			body.estrecho #contenedor p {
+				width:400px;
+			}
+			body.normal #contenedor p {
+				font-size:1.5em;
+			}
+			div.selected {
+				background:#333;
+				font-weight:bold;
+			}
+			.boton {
+				background:#aaa;
+				border:1px solid #000;
+				border-radius:5px;
+				color:fff;
+				display:inline-block;
+				height:auto;
+				margin:10px;
+				padding:10px;
+				text-align:center;
+				width:50px;
+			}
+		</style>
+    </head>
+	<body>
+		<header>
+			<h1>Header de la pagina</h1>
+		</header>
+		<section>
+			<aside>(botones sociables)</aside>
+			<article>(chat)</article>
+			<article>(botones)</article>
+			<article>(Header)</article>
+			<article>(sociables)</article>
+			<article>(pagina)</article>
+		</section>
+		<ul id="elementos">
+			<li>Elemento 1
+				<ul id="elementos2">
+					<li>Elemento 1</li>
+					<li><a href="mailto:jorgea3004@gmail.com">email</a></li>
+					<li>Elemento 3</li>
+					<li><a>Elemento 4</a></li>
+				</ul>
+			</li>
+			<li>Elemento 2</li>
+			<li>Elemento 3
+				<ul id="elementos3">
+					<li><a href="archivo.pdf">archivo PDF</a></li>
+					<li>Elemento 2</li>
+					<li>Elemento 3</li>
+					<li><a href="mysite.com">Enlace a mysite.com</a></li>
+				</ul>
+			</li>
+			<li>Elemento 4</li>
+		</ul>
+		<table id="tablas" cellpadding="0" cellspacing="0" border="1">
+			<tr>
+				<th>titulo 1</td>
+				<th>titulo 2</td>
+				<th>titulo 3</td>
+			</tr>
+			<tr>
+				<td>td 0-1</td>
+				<td>td 0-2</td>
+				<td>td 0-3</td>
+			</tr>
+			<tr>
+				<td>td 1-1</td>
+				<td>td 1-2</td>
+				<td>td 1-3</td>
+			</tr>
+			<tr>
+				<td>td 2-1</td>
+				<td>td 2-2</td>
+				<td>td 2-3</td>
+			</tr>
+			<tr>
+				<td>td 3-1</td>
+				<td>td 3-2</td>
+				<td>td 3-3</td>
+			</tr>
+			<tr>
+				<td>td 4-1</td>
+				<td>td 4-2</td>
+				<td>td 4-3</td>
+			</tr>
+		</table>
+		<div id="alternador">
+			<div id="alternador-largo" class="boton">largo</div>
+			<div id="alternador-normal" class="boton selected">normal</div>
+			<div id="alternador-estrecho" class="boton">estrecho</div>
+		</div>
+		<div id="contenedor">
+			<p>While this code works fine for simple table structures, if we introduce non-standard rows into the table, such as sub-headings, the basic odd-even pattern no longer suffices. For example, suppose we have a table of news items grouped by year, with columns for date, headline, author, and topic. One way to express this information is to wrap each year’s news items in a <tbody> element and use <th colspan="4"> for the subheading. Such a table’s HTML (in abridged form) would look like this:</p>
+		</div>
+		<footer>
+			Con @jorgea3004
+		</footer>
+	</body>
+</html>

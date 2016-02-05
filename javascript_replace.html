@@ -1,0 +1,23 @@
+<html>
+<head>
+	<title>javascript replace</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript"> 
+		function encodeRestrictedWords(str){
+			var res = str.replace(/create/gi, '_cr34t3');
+		    res = res.replace(/this/gi, '_th1s');
+		    res = res.replace(/drop/gi, '_dr0p');
+		    res = res.replace(/delete/gi, '_d3l3t3');
+		   return res;
+		}
+	$(document).ready(function() {
+		var cadena = encodeRestrictedWords('pare this string create on drop and delete.');
+		alert(cadena);
+		console.log(cadena);
+	});
+	</script>
+</head>
+<body>
+
+</body>
+</html>

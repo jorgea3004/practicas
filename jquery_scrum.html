@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<title>Scrum</title>
+	<script src="../librarys/modernizr.js"></script>
+	<script src="../librarys/jquery-1.9.1.min.js"></script>
+	<style type="text/css">
+	html,body {height:100%}
+	html {
+		background:#FFF0FF;
+		min-height:100%;
+		position:relative
+	}
+	body {
+		color:#000000;
+		display:inline;
+		float:left;
+		height:auto;
+		min-height: 100%;
+		margin:0;
+		padding:0;
+		position:relative;
+		text-align:left;
+		width:100%;
+	}
+	div#wrapper {
+		height:100%;
+		min-height:100%;
+	}
+	header, section, footer{
+		display:inline;
+		float:left;
+		height:auto;
+		margin:0;
+		padding:0;
+		position:relative;
+		width:100%;
+	}
+	header{}
+	footer{}
+	h1 {
+		margin:0;
+		padding:0;
+	}
+	section,article,table {
+		display:inline;
+		float:left;
+		height:auto;
+		left:0;
+		position:relative;
+		top:0;
+		width:auto;
+	}
+	table {
+		width:auto;
+	}
+	table thead {
+		width:100%;
+	}
+	table thead th{
+		color:#fff;
+		background:#333;
+		padding:10px;
+		width:auto;
+	}
+	table tr {
+		background:#aaa;
+		width:100%;
+	}
+	table tr td{
+		border-right:solid 1px #555;
+		border-bottom:solid 1px #666;
+		height:20px;
+		width:auto;
+	}
+	</style>
+	<script type="text/javascript">
+	$(function() {
+		$('input#crttbcol').click(function(){
+			var d = $('.scrum').length;
+			if (d == 0){
+				$('#main').append('<table cellspacing="0" cellpadding="0" class="scrum"></table>');
+			}
+			var t = $('#main table.scrum');
+			var dcol = t.find('thead').length;
+			if(dcol==0){
+				t.append('<thead></thead>');
+			}
+			var dcol2 = t.find('th').length;
+			var nameCol = "Col " + dcol2;
+			t.find('thead').append('<th>'+nameCol+'</th>');
+			var drow = t.find('tr').length;
+			for(a=0;a<drow;a++){
+				var idr = "tr"+a;
+				t.find('tr.'+idr).append('<td>&nbsp;</td>');
+			}
+		});
+		$('input#crttbrow').click(function(){
+			var d = $('#main table.scrum');
+			var drow = d.find('tr').length;
+			var idr = "tr"+drow;
+			d.append('<tr class="'+idr+'"></tr>');
+			var dcol = d.find('th').length;
+			for(a=0;a<dcol;a++){
+				d.find('tr.'+idr).append('<td>&nbsp;</td>');
+			}
+			$('tr.'+idr).click(function(){
+				console.log("CL: " + $(this).attr('class'));
+			});
+		});
+	});
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<header>
+			<h1>Header de la pagina</h1>
+		</header>
+		<section>
+			<article id="main">
+				<input type="button" id="crttbcol" value="Columna" />
+				<input type="button" id="crttbrow" value="Renglon" />
+			</article>
+		</section>
+	</div>
+</body>
+</html>

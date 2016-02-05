@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta description="Admin de mapas" />
+        <title>Admin Mapas</title>
+        <style type="text/css">
+        	* {
+        		color: #0f0f0f;
+				height: auto;
+        		margin: 0;
+        		padding: 0;
+				width: auto;
+        	}
+        	body {
+        		background: #efefef;
+        		font-family: arial,helvetica;
+        		font-size: 1em;
+        		font-weight: normal;
+        	}
+			section div#mapa_imagen {
+				background: url("img/img_mapa.jpg") center top no-repeat;
+				border: 0;
+				height: 491px;
+				margin: 0px auto;
+				position: relative;
+				width: 850px;
+			}
+			section div#mapa_imagen.activa {
+				border: solid 2px #1e6381;
+				cursor: crosshair;
+			}
+			section div#mapa_imagen.activa:hover ul.puntos li {
+				display: block;
+			}
+			ul.puntos li {
+				background: transparent url("img/punto.png") center top no-repeat;
+				display: block;
+				height: 12px;
+				list-style: none;
+				position: absolute;
+				width: 12px; 
+			}
+			ul.puntos li p {
+				background: #FFF;
+				display: none;
+				cursor: default;
+				height: auto;
+				margin: 0px 0 0 0;
+				opacity: 0.65;
+				padding: .3em;
+				position: absolute;
+				top: 100%;
+				width: 100px;
+				z-index: 1;
+			}
+			section div#mapa_imagen ul.puntos li p.delpoint {
+				display: none;
+			}
+			section div#mapa_imagen ul.puntos li p.delpoint {
+				background: url("img/thumb_Icon_x_sm_m.png") center top repeat;
+				display: none;
+				height: 12px;
+				left: 99%;
+				margin: 0px 0 0 0;
+				padding: 0em;
+				position: absolute;
+				top: 0%;
+				width: 12px;
+				z-index: 3;
+			}
+			section div#mapa_imagen ul.puntos li:hover p.titulo, section div#mapa_imagen ul.puntos li:hover p.delpoint {
+				display: block;
+			}
+			section div#mapa_imagen ul.puntos li p.delpoint img {
+				border: 0;
+				display: block;
+				cursor: pointer;
+				height: 12px;
+				margin: 0px 0 0 0;
+				padding: 0em;
+				position: relative;
+				width: 12px;
+			}
+			section div#mapa_imagen ul.puntos li {
+				cursor: move;
+			}
+			div.controles {
+				height: 566px;
+				margin: 0px auto;
+				position: relative;
+				width: 800px;
+			}
+			div.controles input.botones {
+				background: #0ff;
+				border: 0;
+				color: #333;
+				cursor: pointer;
+				margin: 5px;
+			}
+			div.controles #cierra {
+				display: none;
+			}
+			
+			section#datospunto {
+				background: url("img/fondo.png") center top repeat;
+				display: none;
+				height: 100%;
+				left: 0;
+				margin: 0;
+				padding: 0;
+				position: absolute;
+				top: 0;
+				width: 100%;
+				z-index: 1;
+			}
+			section#datospunto p {
+				display: inline-block;
+				height: auto;
+				margin: 10px;
+				width: auto;
+			}
+			section#datospunto article {
+				background: #fff;
+				border-radius: 5px;
+				-moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				-ms-border-radius: 5px;
+				display: block;
+				height: 400px;
+				left: 50%;
+				margin: -200px 0 0 -150px;
+				padding: 0;
+				position: absolute;
+				top: 50%;
+				width: 300px;
+				z-index: 2;
+			}
+			section#datospunto article input.datos {
+				background: #ddd;
+				border: solid 1px #aaa;
+				border-radius: 5px;
+				-moz-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				-ms-border-radius: 5px;
+				height: auto;
+				margin: 5px 10px;
+				padding: 3px 0 3px 3px;
+				width: 250px;
+			}
+			section#datospunto article input.datos:focus {
+				border: solid 1px #011e30;
+			}
+			section#datospunto article div#closed {
+				background: url("img/thumb_Icon_x_sm.png") center top no-repeat;
+				cursor: pointer;
+				display: block;
+				height: 25px;
+				left: 95%;
+				margin: 0px 0 0 0px;
+				padding: 0;
+				position: absolute;
+				top: -5%;
+				width: 25px;
+				z-index: 3;
+			}
+			section#datospunto article div#envia {
+				background: url("img/Green_Submit_Button_by_rukiaxichigo15.jpg") center top no-repeat;
+				cursor: pointer;
+				display: block;
+				height: 26px;
+				margin: 0px 10px;
+				padding: 0;
+				position: relative;
+				width: 100px;
+			}
+        </style>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+         <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+        <script type="text/javascript">
+        $(function () {
+        	$("#edita").click(function(){
+        		$(this).hide();
+        		$("#cierra").fadeToggle(400,function(){});
+        		$("div#mapa_imagen").addClass("activa").click(function(e){
+	        		var x = e.pageX - this.offsetLeft - 8;
+					var y = e.pageY - this.offsetTop - 8;
+					var elem = $("div#mapa_imagen ul");
+					var elemli = elem.find("li");
+					var elemc = elemli.length + 1;
+					$("section#datospunto").fadeToggle(500,function(){
+						$("section#datospunto article div#closed").click(function(e){
+							$("section#datospunto input").val("");
+							$("section#datospunto article div#closed").unbind('click');
+							$("section#datospunto article div#envia").unbind('click');
+							$("section#datospunto").fadeToggle();
+							e.preventDefault();
+							e.stopImmediatePropagation();
+						});
+						$("section#datospunto article div#envia").click(function(e){
+							var titulo = $("section#datospunto input#titulo").val();
+							var dir1 = $("section#datospunto input#dir1").val();
+							var dir2 = $("section#datospunto input#dir2").val();
+							var pais = $("section#datospunto input#pais").val();
+							var setpoint = true;
+							if (titulo.length==0){setpoint=false;}
+							//if (dir1.length==0){setpoint=false;}
+							//if (dir2.length==0){setpoint=false;}
+							//if (pais.length==0){setpoint=false;}
+							if(setpoint){
+								elem.append("<li id='elml"+elemc+"'><p class='delpoint'><img src='img/x.gif' /></p><p class='titulo'> " + titulo + "</p></li>");
+								$("#elml"+elemc+"").css({"top":y,"left":x});
+								$("section div#mapa_imagen ul.puntos li#elml"+elemc+"").draggable().click(function(e){
+									e.preventDefault();
+									e.stopImmediatePropagation();
+									alert("Editando");
+								}).mouseup(function(f){
+									var x = f.pageX - $("div#mapa_imagen").offsetLeft - 8;
+									var y = f.pageY - $("div#mapa_imagen").offsetTop - 8;
+									$("#elml"+elemc+"").css({"top":y,"left":x});
+								});
+								$("section div#mapa_imagen ul.puntos li#elml"+elemc+" p.delpoint img").unbind('click');
+								$("section div#mapa_imagen ul.puntos li#elml"+elemc+" p.delpoint img").click(function(e){
+									e.preventDefault();
+									e.stopImmediatePropagation();
+									if(confirm("Deseas borrar el punto " + titulo + " ?")){
+										$(this).parent().parent().remove();
+									}else{
+
+									}
+								});
+								$("section#datospunto input").val("");
+								$("section#datospunto article div#envia").unbind('click');
+								$("section#datospunto article div#closed").unbind('click');
+								$("section#datospunto").fadeToggle();
+							}
+							e.preventDefault();
+							e.stopImmediatePropagation();
+						});
+					});
+	        	});
+        	});
+        	$("#cierra").click(function(e){
+				e.preventDefault();
+				e.stopImmediatePropagation();
+        		$(this).hide();
+				$("section#datospunto article div#envia").unbind('click');
+				$("section#datospunto article div#closed").unbind('click');
+				$("section div#mapa_imagen ul.puntos li p.delpoint img").unbind('click');
+				$("div#mapa_imagen").unbind('click');
+				$("div#mapa_imagen").removeClass("activa");
+        		$("#edita").fadeToggle(400,function(){});
+        	});
+        });
+        </script>
+    </head>
+	<body>
+		<header>
+			<h1>Areas en la imagen mapa</h1>
+		</header>
+		<section>
+			<div id="mapa_imagen">
+				<ul class="puntos"></ul>
+			</div>
+			<div class="controles">
+				<input type="button" id="edita" class="botones" value="Editar" />
+				<input type="button" id="cierra" class="botones" value="Terminar" />
+			</div>
+		</section>
+		<section id="datospunto">
+			<article>
+				<p>Datos del punto</p>
+				<input type="text" value="" placeholder="T&iacute;tulo del punto" class="datos" id="titulo" name="titulo" /><br>
+				<input type="text" value="" placeholder="Direcci&oacute;n del punto" class="datos" id="dir1" name="dir1" /><br>
+				<input type="text" value="" placeholder="Direcci&oacute;n del punto" class="datos" id="dir2" name="dir2" /><br>
+				<input type="text" value="" placeholder="Pa&iacute;s del punto" class="datos" id="pais" name="pais" /><br>
+				<div id="closed"></div>
+				<div id="envia"></div>
+			</article>
+		</section>
+	</body>
+</html>

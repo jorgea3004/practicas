@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<title>Practica Canvas Graphica</title>
+	<script src="../librarys/modernizr.js"></script>
+	<script src="../librarys/jquery-1.10.2.min.js"></script>
+	<style type="text/css">
+	html,body {height:100%}
+	html {
+		background:#FFF0FF;
+		min-height:100%;
+		position:relative
+	}
+	body {
+		color:#000000;
+		display:inline;
+		float:left;
+		height:auto;
+		min-height: 100%;
+		margin:0;
+		padding:0;
+		position:relative;
+		text-align:left;
+		width:100%;
+	}
+	div#wrapper {
+		height:100%;
+		min-height:100%;
+	}
+	</style>
+	<script type="text/javascript">
+	$(function() {
+		//$("canvas").height(500).width(1100);
+		var puntos=[];
+		puntos.push(20);
+		puntos.push(22);
+		puntos.push(18);
+		puntos.push(10);
+		puntos.push(15);
+		puntos.push(2);
+		puntos.push(20);
+		puntos.push(25);
+		puntos.push(30);
+		puntos.push(32);
+		puntos.push(27);
+		puntos.push(22);
+		puntos.push(19);
+		puntos.push(20);
+		puntos.push(22);
+		puntos.push(17);
+		puntos.push(20);
+
+		var alto = $('#mycanvas').height()-0;
+		var ancho = $('#mycanvas').width();
+		var valorX = 0;
+		var valorY = alto;
+		var valorXo = 0;
+		var valorYo = alto;
+		var divs = 5;
+		var lns = Math.round(alto/divs);
+		var lnsbgY = alto;
+		var rangoX = Math.round(ancho / (puntos.length + 1))-1;
+		var clone = puntos.slice(0);
+		clone.sort(function(a,b){return b-a});
+		var rangoY = clone[0] + 1;
+		clone=puntos.slice(puntos.length);
+
+		spot = document.getElementById('mycanvas').getContext('2d');
+
+		spot.fillStyle="#FFFFFF";
+		spot.fillRect(0,0,ancho,alto+20); 
+		//spot.fillStyle="#000000";
+		//spot.fillRect(0,alto-2,ancho,alto);
+		spot.fillStyle="#FFF0FF";
+		for (var i = 0; i < divs; i++) {
+			spot.beginPath();
+			spot.moveTo(0, lnsbgY);
+			spot.lineTo(ancho, lnsbgY);
+			spot.stroke();
+			spot.closePath();
+			//console.log("I: " + i + ", " + lnsbgY);
+			lnsbgY=lnsbgY-lns;
+		};
+
+		spot.fillStyle="#000000";
+		for (var i = 0; i < puntos.length; i++) {
+			valorX = valorX+rangoX;
+			valorY = alto - Math.round((alto*puntos[i])/rangoY);
+			spot.beginPath();
+			spot.arc(valorX, valorY, 5, 0, Math.PI*2, true);
+			spot.fill();
+			spot.closePath();
+			spot.beginPath();
+			spot.moveTo(valorXo, valorYo);
+			spot.lineTo(valorX, valorY);
+			spot.stroke();
+			spot.closePath();
+			spot.beginPath();
+			var text = "Mes " + i + "[" + puntos[i] + "]";
+			var metrics = spot.measureText(text);
+			var width = valorX - (metrics.width / 2);
+			spot.fillText(text,width,valorY-10);
+			spot.closePath();
+			valorXo=valorX;
+			valorYo=valorY;
+			//console.log("P: "+ puntos[i] + ", X: "+valorX + ", Y: "+valorY);
+		};
+	});
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<canvas id="mycanvas" name="mycanvas" width="1000" height="600"></canvas>
+	</div>
+</body>
+</html>

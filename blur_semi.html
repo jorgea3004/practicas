@@ -1,0 +1,25 @@
+<html>
+<head>
+	<title>Semi Trans</title>
+	<style type="text/css">
+	html{margin: 0;padding: 0;}
+	body {margin: 0;padding: 0;display: inline;float: left;position: relative;height: 100%;width: 100%;}
+	.wrapper {margin: 0;padding: 0;display: inline;float: left;position: relative;height: 100%;width: 100%;}
+	.wrapper .content { height: 300px;width: 800px;display: inline;float: left;position: absolute;top: 50%;left: 50%;padding: 0;margin: -150px 0 0 -400px;overflow: hidden;}
+	.wrapper .content img{height: 100%;width: 100%;position: absolute;}
+	.wrapper .content img.imgtop {z-index: 1;}
+	.wrapper .content img.imgback {z-index: 0;}
+	</style>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="jss/Vague.js"></script>
+</head>
+<body>
+<div class="wrapper">
+	<div class="content">
+		<img src="img/semitrans.png" class="imgtop">
+		<img src="img/sunset2.jpg" class="imgback">
+	</div>
+</div>
+<script>var vague = $(".imgback").Vague({intensity:30});vague.blur();</script>
+</body>
+</html>

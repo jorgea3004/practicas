@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <div id="example"></div>
+    <div id="example2"></div>
+    <div id="example3"></div>
+    <div id="example4"></div>
+    <script src="jss/react.min.js"></script>
+    <script src="jss/JSXTransformer.js"></script>
+    <script type="text/jsx">
+    var Componente = React.createClass({
+      render: function(){
+        return (<h1>Titulo</h1>);
+      }
+    });
+    var Componente2 = React.createClass({
+      render: function(){
+        return (<div>Titulo 2 </div>);
+      }
+    });
+    var Componente3 = React.createClass({
+      render: function(){
+        return React.DOM.div({children:[React.DOM.span({children:"Ejemplo 3"}),React.DOM.span({children:[React.DOM.span({children:"Ejemplo 3"}) ] }) ] });
+      }
+    });
+    var Componente4 = React.createClass({
+      render: function(){
+        return React.DOM.div({children:[React.DOM.span({children:"Ejemplo 4"}) ] });
+      }
+    });
+    React.render(<Componente/>, document.getElementById('example'));
+    React.render(<Componente2/>, document.getElementById('example2'));
+    React.render(<Componente3/>, document.getElementById('example3'));
+    React.render(<Componente4/>, document.getElementById('example4'));
+    </script>
+  </body>
+</html>

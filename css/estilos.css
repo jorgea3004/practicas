@@ -1,0 +1,35 @@
+/* 
+Reglas para trabajar en css
+
+1. Definir estilos para ETIQUETAS html, ej header, footerm div, a, etc.
+
+2. Definir estilos para IDENTIFICADORES, ej ID, los elementos unicos en el html, 
+	en el css se especifican con el símbolo #publicidad{}, y en el html se llaman mediante el atributo id, <div id="publicidad">
+
+3. Al final definir para las clases, class, las clases son elementos que se pueden repetir n cantidad de n veces en el html, 
+	en el css se declaran con el símbolo de .publicidad{} , y en el html se llaman mediante el atributo class, <div class="publicidad">
+
+4. todos los estilos se ordenan conforme van apareciendo en la disposición del html, teniendo en cuenta la prioridad anterior, es decir, 
+	primero html, luego id y al final class.
+
+5. Los atributos se declaran de la siguiente forma: { atributo1:valor; atributo2:valor2; ... n:n;};
+
+6. Todos los atributos se ordenan alfabéticamente, por ejemplo width,color,display, entonces el orden será color,display,width;
+
+7. Si se tienen estilos para el comodin * o para las etiquetas html y/o body, éstos estilos son los primeros en definirse.
+
+8. En el body debemos declarar un tamaño de fuente global.
+
+9. Si tenemos estilos para resetear elementos html, éstos irán antes de cualquier estilo.
+
+ */
+
+* {
+	margin:0;
+	padding: 0;
+}
+ html {
+ 	background: #212121 url(../img/fondo.png);
+ 	color:#FFF;
+ 	font-size: 16px;
+ }

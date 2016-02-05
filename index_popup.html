@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta description="Mi sitio" />
+        <title>miPagina</title>
+        <link rel="stylesheet" type="text/css" href="../librarys/normalize.2.1.3.css" />
+		<script src="../librarys/jquery-1.10.2.min.js"></script>
+		<script src="../librarys/modernizr-2.6.2.js"></script>
+        <style type="text/css">
+		#pop {
+		   z-index:2;
+		   position:absolute;
+		   border: 1px solid #333333;
+		   text-align:center;
+		   background:#000000;
+		   display: none;
+		}
+		#cerrar {
+		   float:right;
+		   margin-right:5px;
+		   cursor:pointer;
+		   font:Verdana, Arial, Helvetica, sans-serif;
+		   font-size:12px;
+		   font-weight:bold;
+		   color:#FFFFFF;
+		   background-color:#666666;
+		   width:12px;
+		   position:relative;
+		   margin-top:-1px;
+		   text-align:center;
+		}
+        </style>
+        <script type="text/javascript">
+        function mostrar() {
+		   $("#pop").show('slow');
+		} //checkHover
+        $(function(){
+			   //Conseguir valores de la img
+			   var img_w = $("#pop img").width() + 10;
+			   var img_h = $("#pop img").height() + 28;
+			   
+			   //Darle el alto y ancho
+			   $("#pop").css('width', img_w + 'px');
+			   $("#pop").css('height', img_h + 'px');
+			   
+			   //Esconder el popup
+			   $("#pop").fadeToggle();
+   			  //Consigue valores de la ventana del navegador
+			   var w = $(this).width();
+			   var h = $(this).height();
+			   
+			   //Centra el popup   
+			   w = (w/2) - (img_w/2);
+			   h = (h/2) - (img_h/2);
+			   $("#pop").css("left",w + "px");
+			   $("#pop").css("top",h + "px");
+		 setTimeout("mostrar()",1500);
+		 //Función para cerrar el popup
+		   $("#pop").click(function (){
+		      $(this).fadeToggle('slow');
+		   });
+		});
+        </script>
+    </head>
+	<body>
+<div id="pop">
+   <div id="cerrar">X</div>
+   <img src="../images/bnr-galerias.jpg" height="250" width="300" border="0"> 
+</div>
+
+	</body>
+</html>

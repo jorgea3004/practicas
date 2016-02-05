@@ -1,0 +1,61 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+@font-face{
+   font-family:"ArchitectsDaughter";
+   src: url("../fonts/ArchitectsDaughter.ttf") format("truetype");
+   font-weight:normal;
+   font-style:normal;
+} 
+/* font-size: 16px = 12pt = 100% = 1em */
+body {
+	background: #fff url(../img/fondo.png);
+	color: #fff;
+	font-family: "ArchitectsDaughter", helvetica, arial;
+	font-size: 1em;
+}
+h1 {
+	color:#f60;
+	margin: 0.25em auto;
+	text-align: center;
+	text-shadow: 5px 5px 10px rgba(255,255,255,0.5);
+}
+
+header,nav,footer {
+	background: #1e6381;
+	border-radius: 0.5em;
+	margin: 0.5em auto;
+	max-width: 960px;
+	padding: 0.25em auto;
+	text-align: center;
+}
+section#contenedor {
+	margin: 0.5em auto;
+	max-width: 960px;
+	padding: 0;
+	text-align: center;
+}
+section#principal, aside {
+	background: #1e6381;
+	border-radius: 0.5em;
+	display:inline-block;
+	margin: 0.25em auto;
+	max-width: 960px;
+	min-height: 200px;
+	padding: 0.25em;
+	text-align: center;
+	vertical-align: top;
+	width: 65%;
+}
+article {
+	background: #011e30;
+	border-radius: 0.5em;
+	min-height: 140px;
+	padding: 0.25em;
+}
+aside {
+	background: #1e6381;
+	width: 30%;
+
+}

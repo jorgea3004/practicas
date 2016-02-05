@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="ISO-8859-1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <title>Cuenta Regresiva</title>
+		<script src="../librarys/jquery-1.8.2.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../librarys/modernizr.js"></script>
+		<script type="text/javascript">
+		function calculaTiempo(secs, num1, num2) {
+		  var s = ((Math.floor(secs/num1))%num2).toString();
+		  if (s.length < 2)
+			s = "0" + s;
+		  return "" + s + "";
+		}
+		function cuentaRegresiva(){
+			$("#fec_reg p").remove();
+			var MostrarFormato = "%%D%%:%%H%%:%%M%%:%%S%%";
+			// FechaDestino = DIC / 31 / 2013 11:59 PM UTC-0600
+			var FechaDestino = "12/31/2013 11:59 PM UTC-0600";
+			var DateFinal = new Date(FechaDestino);
+			var DateAhora = new Date();
+			var Diferencia = new Date(DateAhora-DateFinal);
+			var ObtenerSegs = Math.floor(Diferencia.valueOf()/1000);
+			if(ObtenerSegs>0){
+				clearInterval(temporizador);
+				var ifecha = "<p>Ahora en vivo !!!</p>";
+				temporizador = setInterval("cuentaRegresiva2()",1000);
+			} else {
+				ObtenerSegs = Math.abs(ObtenerSegs);
+				var MostrarCadena = MostrarFormato.replace(/%%D%%/g, calculaTiempo(ObtenerSegs,86400,100000));
+				MostrarCadena = MostrarCadena.replace(/%%H%%/g, calculaTiempo(ObtenerSegs,3600,24));
+				MostrarCadena = MostrarCadena.replace(/%%M%%/g, calculaTiempo(ObtenerSegs,60,60));
+				MostrarCadena = MostrarCadena.replace(/%%S%%/g, calculaTiempo(ObtenerSegs,1,60));
+				var arr = MostrarCadena.split(":");
+				var MostrarCadenaD = arr[0];
+				var MostrarCadenaH = arr[1];
+				var MostrarCadenaM = arr[2];
+				var MostrarCadenaS = arr[3];
+				var hrs = (24 * parseInt(MostrarCadenaD)) + parseInt(MostrarCadenaH);
+				if(MostrarCadenaH=='08'){hrs=8;}
+				MostrarCadena = hrs + ":" + MostrarCadenaM + ":" + MostrarCadenaS;
+				var ifecha = "<p>FechaDestino: " + FechaDestino + 
+							  "</p><p>DateFinal: " + DateFinal + 
+							  "</p><p>DateAhora: " + DateFinal + 
+							  "</p><p>ObtenerSegs: " + ObtenerSegs + 
+							  "</p><p>MostrarCadena: " + MostrarCadena + "</p>";
+			}
+			$("#fec_reg").append(ifecha);
+		}
+		function cuentaRegresiva2(){
+			var FechaDestino = "01/01/2014 00:00 AM UTC-0600";
+			var DateFinal = new Date(FechaDestino);
+			var DateAhora = new Date();
+			var Diferencia = new Date(DateAhora-DateFinal);
+			var ObtenerSegs = Math.floor(Diferencia.valueOf()/1000);
+			if(ObtenerSegs>0){
+				$("#fec_reg p").remove();
+				$("#fec_reg").append("<p>Gracias por vernos.</p>");
+				clearInterval(temporizador);
+			}
+		}
+		$(document).ready(function() {
+			temporizador = setInterval("cuentaRegresiva()",1000);
+		});
+		</script>
+    </head>
+	<body>
+		<div id="fec_reg"></div>
+	</body>
+</html>

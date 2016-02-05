@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="jss/react.min.js"></script>
+    <script src="jss/JSXTransformer.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  </head>
+  <body>
+    <div id="example"></div>
+    <div class="container">
+      <div id="formulario"></div>
+    </div>
+    <script type="text/jsx">
+    var Componente = React.createClass({
+      render: function(){
+        return (<h1>Curso de {this.props.descripcion}</h1>);
+      }
+    });
+    var ComponenteFormulario = React.createClass({
+      render: function(){
+        return React.DOM.div({
+          className:'form-group',
+          children:[
+            React.DOM.label({ 
+              htmlFor:'exampleInputEmail1',
+              children:this.props.etiqueta,
+              name:"LBL"+this.props.nombre
+            }),
+            React.DOM.input({ 
+              type:'text',
+              className:"form-control",
+              name:"txt"+this.props.nombre,
+              placeholder:this.props.etiqueta
+            })
+          ]
+        });
+      }
+    });
+    React.render(<Componente descripcion="React.js"/>, document.getElementById('example'));
+    React.render(<ComponenteFormulario nombre="nombre" etiqueta="Escribe tu nombre completo:"/>, document.getElementById('formulario'));
+    </script>
+  </body>
+</html>

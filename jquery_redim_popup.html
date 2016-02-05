@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Redimensionar PopUp</title>
+		<script src="../librarys/modernizr.js"></script>
+		<script src="../librarys/jquery-1.9.1.min.js"></script>
+		<style type="text/css">
+		html,body {height:100%}
+		html {
+			background:#FFF0FF;
+			min-height:100%;
+			position:relative
+		}
+		body {
+			color:#000000;
+			display:inline;
+			float:left;
+			height:auto;
+			min-height: 100%;
+			margin:0;
+			padding:0;
+			position:relative;
+			text-align:left;
+			width:100%;
+		}
+		div#wrapper {
+			height:100%;
+			min-height:100%;
+		}
+		header, section, footer{
+			display:inline;
+			float:left;
+			height:auto;
+			margin:0;
+			padding:0;
+			position:relative;
+			width:100%;
+		}
+		header{}
+		section{}
+		footer{}
+		h1 {
+			margin:0;
+			padding:0;
+		}
+		section#popup {
+			background:url(index_carrusel/bg_popup.png) left top repeat;
+			display:none;
+			float:left;
+			height:100%;
+			left:0;
+			position:absolute;
+			top:0;
+			width:100%;
+		}
+		article#popup_main {
+			background:#fff;
+			border:solid 2px green;
+			display:inline;
+			float:left;
+			height:1px;
+			left:50%;
+			margin:0;
+			position:relative;
+			top:50%;
+			width:1px;
+		}
+		</style>
+		<script type="text/javascript">
+		function popup(ancho_pp,alto_pp){
+			var elem = $('article#popup_main');
+			var alto = elem.width();
+			var ancho = elem.height();
+			var ancho_pp_st = ancho_pp + 30;
+			var alto_pp_st = alto_pp + 30;
+			var mtop = (-1)*(ancho_pp_st / 2);
+			var mlft = (-1)*(alto_pp_st / 2);
+			elem.animate({'height':alto_pp_st,'width':ancho_pp_st,'margin-top':mlft,'margin-left':mtop},300,function(){
+				mtop = mtop+15;
+				mlft = mlft+15;
+				elem.animate({'height':alto_pp,'width':ancho_pp,'margin-top':mlft,'margin-left':mtop},100,function(){});
+			});
+		}
+		function redim(ancho_pp,alto_pp){
+			var elem = $('article#popup_main');
+			var alto = elem.width();
+			var ancho = elem.height();
+			var ancho_pp_st = ancho_pp;
+			var alto_pp_st = alto_pp;
+			var mtop = (-1)*(ancho_pp_st / 2);
+			var mlft = (-1)*(alto_pp_st / 2);
+			elem.animate({'height':alto_pp_st,'width':ancho_pp_st,'margin-top':mlft,'margin-left':mtop},300,function(){
+				elem.click(function(){closepp();});
+			});
+		}
+		function closepp(){
+			var elem = $('article#popup_main');
+			var elemp = $('section#popup');
+			elem.animate({'height':'1px','width':'1px','margin-top':'0px','margin-left':'0px'},200,function(){
+				$('section#popup').fadeToggle(500);
+			});
+		}
+		$(function() {
+			$('section#popup').fadeToggle(500,function(){
+				$(this).append('<article id="popup_main"></article>');
+				popup(480,320);
+				$('article#popup_main').click(function(){redim(100,500);});
+			});
+		});
+		</script>
+    </head>
+	<body>
+		<div id="wrapper">
+			<header>
+				<h1>Header de la pagina</h1>
+			</header>
+			<section>
+				<article>Redimensionar popup</article>
+			</section>
+			<section id="popup"></section>
+			<footer>
+				Con @jorgea3004
+			</footer>
+		</div>
+	</body>
+</html>

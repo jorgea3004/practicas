@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta description="Mi sitio" />
+        <title>test form validation</title>
+		<script src="../librarys/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript">
+ 		function checkFormPss(texto) { 
+ 			var err =true ;
+ 				if(texto.length < 8) { 
+ 					texte = "Error: Password must contain at least eight characters!"; err=false; 
+ 				} 
+ 				re = /(\s)/; 
+ 				if(re.test(texto) && err) { 
+ 					texte = "Error: el Password no debe contener espacios!"; err=false; 
+ 				} 
+ 				re = /[0-9]/; 
+ 				if(!re.test(texto) && err) { 
+ 					texte = "Error: password must contain at least one number (0-9)!"; err=false; 
+ 				} 
+ 				re = /[a-z]/; 
+ 				if(!re.test(texto) && err) { 
+ 					texte = "Error: password must contain at least one lowercase letter (a-z)!"; err=false; 
+ 				} 
+ 				re = /[A-Z]/; 
+ 				if(!re.test(texto) && err) { 
+ 					texte = "Error: password must contain at least one uppercase letter (A-Z)!"; err=false; 
+ 				} 
+ 			if(!err){
+ 				return texte;
+ 			} else {
+ 				return ''; 
+ 			}
+ 		}
+ 		$(function(){
+			$('body section img#enviar').click(function(){
+				var key = $('section input#passw').val();
+				var res = checkFormPss(key);
+				if(res.length>0){
+				alert(res);
+				}
+			});
+		});
+		</script>        
+    </head>
+	<body>
+		<header>
+			<h1>Header de la pagina</h1>
+		</header>
+		<section>
+			<input type="text" id="passw" name="passw" value="" /><br>
+			<img src="../images/btn-enviar.png" border="0" name="enviar" id="enviar" />
+		</section>
+	</body>
+</html>

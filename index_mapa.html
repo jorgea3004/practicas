@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta description="Test de mapas" />
+        <title>Mapas</title>
+        <style type="text/css">
+        	* {
+				height: auto;
+        		margin: 0;
+        		padding: 0;
+				width: auto;
+        	}
+			div.mapa_imagen {
+				height: 712px;
+				position: relative;
+				width: 950px;
+			}
+			ul.notas li {
+			  list-style: none;
+			  display: none;
+			  position: absolute;
+			  border: medium solid white;
+			}
+			div.mapa_imagen:hover ul.notas li {
+			  display: block;
+			}
+			ul.notas li p {
+			  margin: 10px 0 0 0;
+			  padding: .3em;
+			  display: none;
+			  background: #FFF;
+			  opacity: 0.65;
+			  position: absolute;
+			  top: 100%;
+			}
+			ul.notas li:hover p {
+			  display: block;
+			}
+			 
+			ul.notas li#nota1 {
+			  width: 140px; height: 110px; top: 130px; left: 345px;
+			}
+			ul.notas li#nota2 {
+			  width: 30px; height: 200px; top: 10px; left: 10px;
+			}
+			ul.notas li#nota3 {
+			  width: 60px; height: 60px; top: 200px; left: 150px;
+			}
+        </style>
+    </head>
+	<body>
+		<header>
+			<h1>Areas en la imagen mapa</h1>
+		</header>
+		<section>
+			<div class="mapa_imagen">
+  				<img src="../images_walls/21042010061.jpg"  border="0"  />
+ 
+			  <ul class="notas">
+			    <li id="nota1"><p>Area sucia :)</p></li>
+			    <li id="nota2"><p>Area 2</p></li>
+			    <li id="nota3"><p>Area 3</p></li>
+			  </ul>
+			</div>
+		</section>
+	</body>
+</html>

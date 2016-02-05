@@ -1,0 +1,58 @@
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Dibujando con Platzi</title>
+	<script type="text/javascript">
+	var dibujo, lienzo,t,b;
+
+	function dibujarGrilla(){
+		var l=lienzo;
+		var ancho=500, alto=500;
+		var linea;
+		var numLineas = Number(t.value);
+		var anchoLinea = ancho/numLineas;
+		for (var linea = 0; linea <= numLineas; linea++) {
+			l.beginPath();
+			l.strokeStyle="#AAA";
+			l.moveTo(linea*anchoLinea,0);
+			console.log(numLineas + " " + linea + " " + anchoLinea + " " +  (linea*anchoLinea) );
+			l.lineTo(linea*anchoLinea,alto);
+			l.closePath();
+			l.stroke();
+		};
+	}
+	function inicio(){
+		dibujo = document.getElementById("dibujito");
+		lienzo = dibujo.getContext("2d");
+
+		t = document.getElementById("usuario");
+		b = document.getElementById("dibujalo");
+		dibujo = document.getElementById("dibujito");
+
+		b.addEventListener('click',dibujarGrilla);
+
+		lienzo.moveTo(100,100);
+		lienzo.lineTo(200,100);
+		lienzo.strokeStyle = "#00BB00";
+		lienzo.stroke();
+
+		lienzo.beginPath();
+		lienzo.strokeStyle="#00F";
+		lienzo.arc(150,150,100,(Math.PI*2),false);
+		lienzo.closePath();
+		lienzo.stroke();
+
+
+	}
+	</script>
+</head>
+<body>
+	<input type="text" id="usuario">
+	<input type="button" id="dibujalo" value="ClickMe">
+<canvas width="500" height="500" id="dibujito"></canvas>
+<h2>Dibujando con CANVAS</h2>
+<script type="text/javascript">
+inicio();
+</script>
+</body>
+</html>

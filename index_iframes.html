@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta description="Mi sitio" />
+        <title>iFrames Responsive</title>
+		<script src="../librarys/jquery-1.10.2.min.js"></script>
+        <style type="text/css">
+        html{margin: 0; padding: 0;}
+        html body,html body * {border: solid 0px #aaa; display: inline-block; height: auto; margin: 0; padding: 0;position:relative; width: 100%;}
+        header {margin: 1% 0;}
+        body section {border: solid 1px #aaa;margin: 1% 0 0 0; padding-bottom: 56.25%; padding-top: 30px; height: 0;overflow: hidden;}
+        body section iframe {position: absolute; top: 0; left: 0; width: 320px; height: 100%;}
+        @media screen and (max-width:900px){
+		}
+        </style>
+        <script type="text/javascript">
+			$(function(){
+			});
+        </script>
+    </head>
+	<body>
+		<header>
+			<h1>Header de la pagina</h1>
+		</header>
+		<section>
+			<iframe src="http://localhost/html5/index_amigos.html"></iframe>
+		</section>
+		<section>
+		</section>
+	</body>
+</html>

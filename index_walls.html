@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="ISO-8859-1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <title>Wallpaper por fecha</title>
+		<script src="../librarys/jquery-1.8.2.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../librarys/modernizr.js"></script>
+		<script type="text/javascript">
+		function getWallp(){
+			var fechas = [];
+			var fondos = [];
+			var iDefault = 'Main-Background_Home_Up_default.jpg';
+
+			fechas.push('01/01/2013 00:00 PM UTC-0500');
+			fechas.push('05/03/2013 06:42 PM UTC-0500');
+			fechas.push('05/03/2013 06:43 PM UTC-0500');
+			fechas.push('05/03/2013 06:44 PM UTC-0500');
+			fechas.push('05/03/2013 06:45 PM UTC-0500');
+			fechas.push('05/03/2013 06:46 PM UTC-0500');
+			fechas.push('05/03/2013 06:47 PM UTC-0500');
+
+			fondos.push(iDefault);
+			fondos.push('Main-Background_Home_Up_2013.jpg');
+			fondos.push('Main-Background_Home_Up_febrero.jpg');
+			fondos.push('Main-Background_Home_Up_marzo.jpg');
+			fondos.push('Main-Background_Home_Up_abril2.jpg');
+			fondos.push('Main-Background_Home_Up_10mayo01.jpg');
+			fondos.push(iDefault);
+
+			var DateIni = "01/01/2013 00:00 AM UTC-0500";
+			var DateInicial = new Date(DateIni);
+			var DateAhora = new Date();
+			var Diferencia = new Date(DateAhora-DateInicial);
+			var ObtenerSegs = Math.floor(Diferencia.valueOf()/1000);
+			var wall1 = '';
+			var wall1dif = '';
+			var wall1difSegs = 0;
+			var j = 0;
+			for (var i = 0; i < fechas.length; i++) {
+				wall1 =  new Date(fechas[i]);
+				wall1dif = new Date(wall1-DateAhora);
+				wall1difSegs = Math.floor(wall1dif.valueOf()/1000);
+				if (wall1difSegs<=0) {
+					j = i;
+				}
+			}
+			if(j==NaN){
+				j=0;
+			}
+			return "url(../playcity/html/imgs/fondos/" + fondos[j] + ")";
+		}
+		$(function() {
+			$("body").css('background-image',getWallp());
+		});
+		</script>
+        <style type="text/css">
+        html body * {
+        	display: inline-block;
+        	height: auto;
+        	margin: 0;
+        	padding: 0;
+        	width: 100%;
+        }
+        body {
+        	background: url(../playcity/html/imgs/fondos/Main-Background_Home_Up_default.jpg) center top no-repeat;
+        }
+        div#fec_reg {
+        	background: #fff;
+        	border: solid 1px #aaa;
+        	height: 200px;
+        	width: 200px;
+        }
+        </style>
+    </head>
+	<body>
+	</body>
+</html>

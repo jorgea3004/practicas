@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta description="Home Productos" />
+        <title>Home Productos</title>
+		<script src="../librarys/jquery-1.10.2.min.js"></script>
+        <style type="text/css">
+        html{margin: 0; padding: 0;}
+        html body,html body * {border: solid 0px #aaa; display: inline-block;float: left; height: auto; margin: 0; padding: 0;position:relative; width: 100%;}
+        header {margin: 1% 0;}
+        body section {border: solid 0px #aaa;height: auto;left:50%; margin: 0 0 0 -500px; padding: 0; width: 1000px;}
+        body section article {display: inline; position: relative;float: left; height: 500px;}
+        body section article ul {height: 100%;width: 100%;overflow: hidden;}
+        body section article ul li {background: #aaa; list-style: none;display: inline; position: relative;float: left;height: 100%;width: 20%;overflow: hidden;z-index: 0;}
+        body section article ul li img {border:0; height: 100%;margin: 0;position: absolute; right: 0; width: auto;}
+        body section article ul li label {color: #fff; display: block; position: absolute; font-size: 20px; height: auto; margin: 0px; right: -30px;bottom: 60px; width: auto; -webkit-transform:rotate(270deg); -o-transform:rotate(270deg); -ms-transform:rotate(270deg); -moz-transform:rotate(270deg);}
+        @media screen and (max-width:1000px){
+	        body section {left:0; margin-left: 0px; width: 100%;}
+        }
+        </style>
+        <script type="text/javascript">
+        $(function () {
+        	$('section article ul li').hover(function(evento){
+        		var este = $(this);
+       			este.css({'width':'80%'});
+        		$('section article ul li').not(this).css({'width':'5%'});
+        	},function (evento) {
+        		$('section article ul li').css({width:'20%'});
+        	});
+        });
+        </script>
+    </head>
+	<body>
+		<header>
+			<h1>Header de la pagina</h1>
+		</header>
+		<section>
+			<article>
+				<ul>
+					<li><img src="../images_walls/i03032010045.jpg" /><label>Cat&aacute;logo 1</label></li>
+					<li><img src="../images_walls/i19012010035.jpg" /><label>Cat&aacute;logo 2</label></li>
+					<li><img src="../images_walls/iFoto0049.jpg" /><label>Cat&aacute;logo 3</label></li>
+					<li><img src="../images_walls/iImage000.jpg" /><label>Cat&aacute;logo 4</label></li>
+					<li><img src="../images_walls/itvisa012.jpg" /><label>Cat&aacute;logo 5</label></li>
+				</ul>
+			</article>
+		</section>
+		<footer>
+		</footer>
+	</body>
+</html>

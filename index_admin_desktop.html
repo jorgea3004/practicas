@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta description="Mi sitio" />
+        <title>Admin Desktop</title>
+		<script src="../librarys/jquery-1.9.1.min.js"></script>
+        <style type="text/css">
+        html body {
+        	height: auto;
+        	margin: 0;
+        	padding: 0;
+        	width: 100%;
+        }
+        html body * {
+        	display: inline-block;
+        	height: auto;
+        	margin: 0;
+        	padding: 0;
+        	width: 100%;
+        }
+        section {
+        	height: auto;
+        	margin: 0;
+        	padding: 0;
+        	width: 100%;
+        }
+        article {
+        	height: auto;
+        	width: 100%;
+        }
+        ul {
+        	height: auto;
+        	width: 100%;
+        }
+        ul li {
+        	border: solid 1px transparent; 
+        	height: auto;
+        	list-style: none;
+        	margin: 1px 0 1px 1%;
+        	padding: 2px 0;
+        	width: 98%;
+        }
+        ul li:first-child {
+        	text-align: center;
+        }
+        ul li.errores {
+        	border: solid 1px red; 
+        }
+        ul li.btnsubmit {
+        	background: #aaa;
+        	border: solid 2px green;
+         	border-radius: 10px;
+	       	height: 45px;
+	       	margin: 25px 0 0 1%;
+	       	width: 96%;
+        }
+        ul li.btnsubmit:active {
+        	background: #fff;
+        }
+        ul li b {
+        	display: inline;
+        	height: auto;
+        	width: auto;
+        }
+        ul li label {
+        	color: #fff;
+        	display: inline;
+        	float: left;
+        	font-family: 'Comic Sans MS', cursive;
+        	font-size: 24px;
+        	height: auto;
+        	margin: 0;
+        	padding: 6px 0;
+        	position: relative;
+        	text-align: center;
+        	width: 100%;
+        }
+        ul li.btnsubmit label:active {
+        	color: #000;
+        }
+        ul li input,ul li select {
+        	display: inline;
+        	height: 30px;
+        	margin: 0;
+        	padding: 0;
+        	width: 94%;
+        }
+        form ul li,form ul li:first-child {
+        	font-size: 20px;
+        	font-weight: bold;
+        	margin: 10px 0 10px 0;
+        	text-align: left;
+        }
+        ul li select option {
+        	display: block;
+        	float: left;
+        	height: 20px;
+        	position: relative;
+        	margin: 0;
+        	padding: 0;
+        	width: 100%;
+        }
+        </style>
+        <script type="text/javascript">
+		$(function() {
+			$('ul li.btnsubmit label').click(function(){
+				var titulo = $('ul li input#titulo').val();
+				var seccion = $('ul li select#seccion').val();
+				var target = $('ul li select#target').val();
+				var enlace = $('ul li input#enlace').val();
+				var file = $('ul li input#imagen').val();
+				var err = false;
+				var msg = "";
+				if(titulo.length==0){
+					err=true;
+					msg = msg+"Debes escribir el TITULO.\n";
+				}
+				if(enlace.length==0){
+					err=true;
+					msg = msg+"Debes escribir el LINK.\n";
+				}
+				if(seccion==0){
+					err=true;
+					msg = msg+"Debes escoger una opcion de SECCION.\n";
+				}
+				if(target==0){
+					err=true;
+					msg = msg+"Debes escoger una opcion de VENTANA.\n";
+				}
+				if(file.length==0){
+					err=true;
+					msg = msg+"Debes escoger un archivo de IMAGEN.\n";
+				}
+				if (err==true) {
+					alert(msg);
+				} else {
+					alert('Submit.');
+					//$('form#adesktop').submit();
+				}
+			});
+		});
+        </script>
+    </head>
+	<body>
+		<section>
+			<article>
+				<form action="#" method="POST" id="adesktop" name="adesktop" enctype="multipart/form-data"> 
+				<ul>
+					<li>Admin Desktop</li>
+					<li>
+						<input type="text" id="titulo" name="titulo" placeholder="Titulo ..." />
+					</li>
+					<li>
+						<select id="seccion" name="seccion">
+							<option value="0" selected >Escoge la Seccion:</option>
+							<option value="1">Menu</option>
+							<option value="2">Sociales</option>
+							<option value="3">Conocimiento</option>
+							<option value="4">Entretenimiento</option>
+							<option value="5">Musica</option>
+							<option value="6">Applicaciones</option>
+							<option value="7">Televisa</option>
+							<option value="8">Galerias</option>
+							<option value="9">Cosplay</option>
+						</select>
+					</li>
+					<li>
+						<select id="target" name="target">
+							<option value="0" selected >Escoge la ventana:</option>
+							<option value="1">Nueva</option>
+							<option value="2">Cuadro</option>
+						</select>
+					</li>
+					<li>
+						<input type="text" id="enlace" name="enlace" placeholder="Link ..." />
+					</li>
+					<li>
+						<input type="file" id="imagen" name="imagen" placeholder="Icono ..." />
+					</li>
+					<li class="btnsubmit">
+						<label>Crear Elemento</label>
+					</li>
+				</ul>
+				</form>
+			</article>
+		</section>
+	</body>
+</html>

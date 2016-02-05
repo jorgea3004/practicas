@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<Fotos>
+	<Item>
+			<ItemId>1</ItemId>
+			<ItemFoto>res_DSCN1655.jpg</ItemFoto>
+			<ItemLink>res_DSCN1655.jpg</ItemLink>
+			<ItemGal>9</ItemGal>
+			<ItemGalName>La Mole Feb 2011</ItemGalName>
+		</Item>
+	<Item>
+			<ItemId>2</ItemId>
+			<ItemFoto>res_DSCN1657.jpg</ItemFoto>
+			<ItemLink>res_DSCN1657.jpg</ItemLink>
+			<ItemGal>9</ItemGal>
+			<ItemGalName>La Mole Feb 2011</ItemGalName>
+		</Item>
+	<Item>
+			<ItemId>3</ItemId>
+			<ItemFoto>res_DSCN1659.jpg</ItemFoto>
+			<ItemLink>res_DSCN1659.jpg</ItemLink>
+			<ItemGal>9</ItemGal>
+			<ItemGalName>La Mole Feb 2011</ItemGalName>
+		</Item>
+	<Item>
+			<ItemId>4</ItemId>
+			<ItemFoto>res_DSCN1661.jpg</ItemFoto>
+			<ItemLink>res_DSCN1661.jpg</ItemLink>
+			<ItemGal>9</ItemGal>
+			<ItemGalName>La Mole Feb 2011</ItemGalName>
+		</Item>
+	<Item>
+			<ItemId>5</ItemId>
+			<ItemFoto>res_DSCN1663.jpg</ItemFoto>
+			<ItemLink>res_DSCN1663.jpg</ItemLink>
+			<ItemGal>9</ItemGal>
+			<ItemGalName>La Mole Feb 2011</ItemGalName>
+		</Item>
+	<Item>
+			<ItemId>6</ItemId>
+			<ItemFoto>res_DSCN1665.jpg</ItemFoto>
+			<ItemLink>res_DSCN1665.jpg</ItemLink>
+			<ItemGal>9</ItemGal>
+			<ItemGalName>La Mole Feb 2011</ItemGalName>
+		</Item>
+	<Item>
+			<ItemId>7</ItemId>
+			<ItemFoto>res_DSCN1667.jpg</ItemFoto>
+			<ItemLink>res_DSCN1667.jpg</ItemLink>
+			<ItemGal>9</ItemGal>
+			<ItemGalName>La Mole Feb 2011</ItemGalName>
+		</Item>
+	<Item>
+			<ItemId>8</ItemId>
+			<ItemFoto>res_DSCN1669.jpg</ItemFoto>
+			<ItemLink>res_DSCN1669.jpg</ItemLink>
+			<ItemGal>9</ItemGal>
+			<ItemGalName>La Mole Feb 2011</ItemGalName>
+		</Item>
+	<Item>
+			<ItemId>9</ItemId>
+			<ItemFoto>res_DSCN1671.jpg</ItemFoto>
+			<ItemLink>res_DSCN1671.jpg</ItemLink>
+			<ItemGal>9</ItemGal>
+			<ItemGalName>La Mole Feb 2011</ItemGalName>
+		</Item>
+	<Item>
+			<ItemId>10</ItemId>
+			<ItemFoto>res_DSCN1673.jpg</ItemFoto>
+			<ItemLink>res_DSCN1673.jpg</ItemLink>
+			<ItemGal>9</ItemGal>
+			<ItemGalName>La Mole Feb 2011</ItemGalName>
+		</Item>
+</Fotos>

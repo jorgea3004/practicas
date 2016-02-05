@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>miPagina</title>
+		<script src="../librarys/modernizr.js"></script>
+		<script src="../librarys/audiojs/audio.min.js"></script>
+		<style type="text/css">
+			section {
+				margin:0;
+				padding:0;
+			}
+			section article {
+				margin:10px;
+				padding:0;
+			}
+			audio, video {
+				background:#000;
+				margin:0;
+				padding:0;
+				display:inline;
+			}
+			section article ul {
+				margin:0;
+				padding:0;
+			}
+			section article ul li {
+				margin:10px 0;
+				padding:0;
+				list-style:none;
+			}
+		</style>
+    <script>
+      audiojs.events.ready(function() {
+        audiojs.createAll();
+      });
+    </script>
+    </head>
+	<body>
+		<header>
+			<h1>Header de la pagina</h1>
+		</header>
+		<section>
+			<article>
+				<video id="mejorandola" width="640" height="320" controls>
+					<source src="../elementos/Nike_Advert.mp4" />
+				Your browser does not support the video tag.
+				</video> 
+			</article>
+			<article>
+				<audio id="playermp3" preload width="320" height="30">
+					<source src="../elementos/Wildchil_-_Renegade_Master_remix.mp3" />
+				</audio>
+			</article>
+			<article>
+				<ul>
+					<li>
+						<input type="text" placeholder="Campo tipo Text" required />
+					</li>
+					<li>
+						<input type="number" placeholder="Campo tipo number" />
+					</li>
+					<li>
+						<input type="email" placeholder="Campo tipo email" />
+					</li>
+					<li>
+						<input type="password" placeholder="Campo tipo password" required />
+					</li>
+					<li>
+						<input type="search" placeholder="Campo tipo search" />
+					</li>
+					<li>
+						<input type="date" placeholder="Campo tipo date" />
+					</li>
+				</ul>
+			</article>
+			<aside>(botones sociables)</aside>
+			<article>(chat)</article>
+		</section>
+		<footer>
+			Con @jorgea3004
+		</footer>
+	</body>
+</html>

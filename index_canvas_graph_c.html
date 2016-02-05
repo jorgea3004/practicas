@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<title>Practica Canvas Graphica Circulo</title>
+	<script src="../librarys/modernizr.js"></script>
+	<script src="../librarys/jquery-1.10.2.min.js"></script>
+	<style type="text/css">
+	html,body {height:100%}
+	html {
+		background:#FFF0FF;
+		min-height:100%;
+		position:relative
+	}
+	body {
+		color:#000000;
+		display:inline;
+		float:left;
+		height:auto;
+		min-height: 100%;
+		margin:0;
+		padding:0;
+		position:relative;
+		text-align:left;
+		width:100%;
+	}
+	div#wrapper {
+		height:100%;
+		min-height:100%;
+	}
+	</style>
+	<script type="text/javascript">
+	function deg2rad(ang) {
+		return ang * (Math.PI/180.0);
+	}
+	function aleatorio(inferior,superior){
+		numPosibilidades = superior - inferior
+		aleat = Math.random() * numPosibilidades
+		aleat = Math.floor(aleat)
+		return parseInt(inferior) + aleat
+	}
+	function colorAleatorio(){
+	   return "rgb(" + aleatorio(0,255) + "," + aleatorio(0,255) + "," + aleatorio(0,255) + ")";
+	} 
+	$(function() {
+		// Valores de Arrays
+		var colors=[];
+
+		// Valores de Array de valores
+		var puntos=[];
+		puntos.push(31);
+		puntos.push(22);
+		puntos.push(18);
+		puntos.push(10);
+		puntos.push(15);
+		puntos.push(2);
+		puntos.push(20);
+		puntos.push(25);
+		puntos.sort(function(a,b){return b-a});
+
+		// Valores de Array de textos de los valores
+		var clone = [];
+		clone.push('asdfghjk');
+		clone.push('asdfghjl');
+		clone.push('asdfghjakl');
+		clone.push('asdfdfhjkl');
+		clone.push('asdfghgjkl');
+		clone.push('asdfgkl');
+		clone.push('asdfhjkl');
+		clone.push('asdftrerghjkl');
+
+		// Array clon de los textos, se ordena en descendente para obtener el texto mas largo
+		var clone2 = clone.slice(0);
+		clone2.sort(function(a,b){return b.length-a.length});
+
+		// Definicion de espacio para total
+		var alto = $('#mycanvas').height();
+		var ancho = $('#mycanvas').width();
+		var valorXo = ancho/2;
+		var valorYo = alto/2;
+		var radio = 0;
+		if(alto==ancho){
+			radio = valorXo-50;
+		} else {
+			if(alto>ancho){
+				radio = valorXo-50;
+			}
+			if(alto<ancho){
+				radio = valorYo-50;
+			}
+		}
+		var longt = valorXo+radio;
+
+		// Inicializacion del objeto
+		ctx = document.getElementById('mycanvas').getContext('2d');
+
+		// dibuja un circulo principal
+		ctx.beginPath();
+		ctx.fillStyle="#FFFFFF";
+		ctx.fillRect(0,0,ancho,alto); 
+		ctx.fillStyle="#FFF0FF";
+		ctx.closePath();
+		ctx.fill();
+		
+		var total = 0;
+		var angle;
+		var angles=0;
+		var startAngle = 0 ;
+		var endAngle=0;
+		var counterClockwise = false;
+		ctx.strokeStyle = 'black';
+		ctx.lineWidth = 1;
+		var c=0;
+		var angulo=0;
+		var text = '';
+		var metrics ='';
+		var valorX='';
+		var valorY='';
+
+		// llenado del array de los colores
+		for (var i = 0, n = puntos.length; i < n; ++i)
+		{
+		    total += puntos[i];
+		    colors.push(colorAleatorio());
+		}
+
+		// Generacion de grafico
+		// Calculos de cada tamaño del grafico
+		for (var i = 0; i < puntos.length; i++) {
+			angle = (puntos[i]*360)/total;
+			endAngle = startAngle+angle;
+			ini = deg2rad(startAngle);
+			fin = deg2rad(endAngle);
+
+			ctx.beginPath();
+			ctx.fillStyle=colors[i];
+			ctx.arc(valorXo, valorYo, radio, ini, fin, counterClockwise);
+			ctx.lineTo(valorXo, valorYo);
+			ctx.fill();
+			ctx.stroke();
+			ctx.closePath();
+
+			radio=radio-0;
+			startAngle = endAngle;
+			c=c+1;
+			if(c>2){c=0;}else{}
+		};
+
+		// Generacion del cuadro identificativo de las divisiones y de las posiciones de los textos en el grafico
+		var alto = (puntos.length*20)+20;
+		ctx.beginPath();
+		ctx.font = '12pt Calibri';
+		var text = clone2[0] + " [" + puntos[0] + "]";
+		var metrics = ctx.measureText(text);
+
+		ctx.fillStyle="#aaaaaa";
+		ctx.fillRect(10,10,metrics.width+50,alto); 
+		ctx.stroke();
+		ctx.closePath();
+		ctx.fill();
+
+		var x1=20;
+		var y1=20;
+		var x2=45;
+		var y2=30;
+		for(var i=0;i<puntos.length;i++) {
+			// cuadro de la division de color de fondo
+			ctx.beginPath();
+			ctx.fillStyle=colors[i];
+			ctx.fillRect(x1,y1,15,15); 
+			ctx.stroke();
+			ctx.closePath();
+			ctx.fill();
+
+			// texto de la division de color de fondo
+			ctx.fillStyle = "#000000";
+			text = clone[i] + " [" + puntos[i] + "]";
+			metrics = ctx.measureText(text);
+			ctx.fillText(text,x2,y2);
+			ctx.closePath();
+
+			y1=y1+20;
+			y2=y2+20;
+
+			// texto de la division en el grafico
+			angle = (puntos[i]*360)/total;
+			ctx.beginPath();
+			ctx.lineWidth=3;
+			angulo2 = angulo + (angle/2);
+			xa=valorXo+Math.cos(deg2rad(angulo2)) * (radio+25);
+			ya=valorYo+Math.sin(deg2rad(angulo2)) * (radio+25);
+			width = xa - (metrics.width / 2);
+			ctx.fillText(text,width,ya);
+			ctx.stroke();
+			ctx.fill();
+			ctx.closePath();
+			angulo=angulo+angle;
+
+		}
+
+
+	});
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<canvas id="mycanvas" name="mycanvas" width="1000" height="600"></canvas>
+	</div>
+</body>
+</html>

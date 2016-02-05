@@ -1,0 +1,81 @@
+<html>
+<head>
+	<title>Animaciones con React.js</title>
+	<style type="text/css">
+	.conborde {
+		border: 1px solid #aaa;
+		margin: 2px 0;
+		padding: 5px;
+	}
+	.example-enter {
+		opacity: 0;
+		transition: opacity .5s ease-in;
+	}
+	.example-enter.example-enter-active {
+		opacity: 1;
+	}
+	.example-leave {
+		opacity: 1;
+		transition: opacity .5s ease-in;
+	}
+	.example-leave.example-leave-active {
+		opacity: 0;
+	}
+	</style>
+</head>
+<body>
+<div id="container"></div>
+<script src="jss/react-with-addons.min.js"></script>
+<script src="jss/JSXTransformer.js"></script>
+<script type="text/jsx;harmony=true">
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
+class TodoList extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = { items: ['hello', 'world', 'lista'] }
+	}
+
+	handleAdd(){
+		var reply = prompt('Agregue un tarea', "");
+		if(reply==undefined)
+		{
+		}else if(reply==""){
+			alert("Ha pulsado aceptar con el campo vacio");
+		}else{
+			var newItems = this.state.items.concat([reply]);
+			this.setState({items: newItems});
+		}
+	}
+
+	handleRemove(i){
+		var reply = confirm('Deseas borrar el elemento?');
+		if(!reply){
+		}else{
+			var newItems = this.state.items;
+			newItems.splice(i,1);
+			this.setState({items:newItems});
+		}
+	}
+
+	render() {
+		return <div>
+		<button onClick={this.handleAdd.bind(this)}>
+		Agregar tarea</button>
+		<ReactCSSTransitionGroup transitionName="example">
+		{ 
+			this.state.items.map((item,i) => { 
+				return <div key={item} id={"elem"+i}  className="conborde" onClick={this.handleRemove.bind(this,i)}>{item}</div>
+			} ) 
+		}
+		</ReactCSSTransitionGroup>
+		</div>
+	}
+}
+	React.render(
+		<TodoList />,
+		document.getElementById('container')
+	);
+</script>
+</body>
+</html>
